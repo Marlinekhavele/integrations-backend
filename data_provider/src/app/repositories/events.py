@@ -1,12 +1,11 @@
-# data_provider/repository/event_repository.py
-import uuid
+from datetime import date
+from typing import List, Optional
+
+from app.deps import get_db_session
+from app.models.events import Event
 from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.deps import get_db_session
-from app.models.events import Event
-from datetime import date
-from typing import List, Optional
 
 
 class EventRepository:

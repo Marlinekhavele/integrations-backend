@@ -1,9 +1,6 @@
-SERVER_PORT=8054
-ifneq (,$(wildcard ./.dev.env))
-	include .env
-	export
-endif
-.PHONY : install setup tests check-types check check-full
+SERVER_PORT=8000
+
+.PHONY : install setup test lint serve start stop pyclean migrate-local
 
 install:
 	poetry install
@@ -11,34 +8,24 @@ install:
 setup: install
 	pre-commit install
 
-test: migrate-local
-	poetry run pytest 
+test:
+	poetry run pytest
 
-test-with-coverage: migrate-local
-	poetry run pytest src/tests --cov=src/app --cov-report term-missing:skip-covered --cov-report xml:.test-reports/coverage.xml --junitxml=.test-reports/test-run.xml
-
+test-with-coverage:
+	poetry run pytest src/tests --cov=src --cov-report=term-missing --cov-report=xml:.test-reports/coverage.xml --junitxml=.test-reports/test-run.xml
 
 lint:
 	poetry run pre-commit run --all-files
 
-lint-changed:
-	git status --porcelain | egrep -v '^(D |RM|R )' | cut -b 4- | xargs poetry run pre-commit run --files
-
-lint-full-check: lint check-types
-
 serve:
-	cd src && poetry run uvicorn app.main:app --reload --port ${SERVER_PORT}
+	cd src && poetry run uvicorn main:app --reload --port ${SERVER_PORT}
 
 start:
-###### change this db 
-	docker-compose up -d hotel-management-app-db  hotel-management-app-test-db 
+	docker-compose up -d hotel_management-db
 
-# Stop docker-compose
 stop:
 	docker-compose -f docker-compose.yml down
 
-
-# clean pyc files/dirs
 pyclean:
 	find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +
 
