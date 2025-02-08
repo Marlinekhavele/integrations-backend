@@ -1,6 +1,6 @@
 SERVER_PORT=8000
 
-.PHONY : install setup test lint serve start stop pyclean migrate-local
+.PHONY: install setup test lint serve start stop pyclean migrate-local docker-build docker-up docker-down
 
 install:
 	poetry install
@@ -21,13 +21,22 @@ serve:
 	cd src && poetry run uvicorn main:app --reload --port ${SERVER_PORT}
 
 start:
-	docker-compose up -d hotel_management-db
+	docker-compose up -d hotel_management-db dashboard_service-db
 
 stop:
-	docker-compose -f docker-compose.yml down
+	docker-compose down
 
 pyclean:
 	find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +
 
 migrate-local:
 	cd src && poetry run alembic upgrade head
+
+docker-build:
+	docker-compose build
+
+docker-up:
+	docker-compose up -d
+
+docker-down:
+	docker-compose down

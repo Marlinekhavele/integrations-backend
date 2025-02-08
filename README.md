@@ -1,9 +1,8 @@
-Integrations Backend Service
-Project Overview
+- Integrations Backend Service
+-Project Overview
 This project implements two services:
-
-Data Provider - Handles booking and cancellation events.
-Dashboard Service - Provides insights into bookings per hotel.
+- Data Provider - Handles booking and cancellation events.
+- Dashboard Service - Provides insights into bookings per hotel.
 The project follows a repository pattern, uses FastAPI, manages migrations with Alembic, and utilizes Poetry for dependency management.
 
 Features
@@ -32,31 +31,32 @@ Pre-requisites
 Ensure you have Docker, Poetry, and Python (>=3.8) installed.
 
 Clone the Repository
-git clone <repository_url>
+git clone
 cd integrations-backend
 
 Install Dependencies
-poetry install
+-poetry install
 
 
 Run Migrations
 
-poetry run alembic upgrade head
+- poetry run alembic upgrade head
 
 Run the Application
-poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+-poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 
 Running with Docker
-docker-compose up --build
+- docker-compose up --build
 
 API Documentation
+add here
 After running the application, access the API docs at:
 
-OpenAPI: http://localhost:8000/docs
+- OpenAPI: http://localhost:8000/docs
 
 Testing
-poetry run pytest
+- poetry run pytest
 
 
 
