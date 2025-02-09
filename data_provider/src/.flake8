@@ -1,3 +1,0 @@
-[flake8]
-# Set the maximum line length (default is 79 characters)
-max-line-length = 107
