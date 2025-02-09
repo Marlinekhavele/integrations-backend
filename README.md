@@ -25,6 +25,7 @@ git clone https://github.com/Marlinekhavele/integrations-backend
 cd integrations-backend
  ```
 2. Set up PostgreSQL database:
+```shell
   ##### Ubuntu
    sudo apt-get update
    sudo apt-get install postgresql postgresql-contrib
@@ -51,6 +52,7 @@ cd integrations-backend
 
   ##### Exit the PostgreSQL shell
     \q
+```
 
 3. Create and activate a virtual environment: [install pyenv](https://github.com/pyenv/pyenv#installation)
 
@@ -72,23 +74,26 @@ poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 7. Running with Docker
 ```bash
 docker-compose up --build
-
  ```
 
 8. API Documentation
-add here
-After running the application, access the API docs at:
+- Data Provider
+```GET /events``` - Retrieve events with optional filters
+```POST /events``` - Create new event
+- Dashboard
+```GET /dashboard/{hotel_id}``` - Get booking statistics with customizable periods
+
+9. After running the application, access the API docs at:
 ```bash
 OpenAPI: http://localhost:8000/docs
 
  ```
-
-Testing
+10. Testing
 ```bash
 poetry run pytest
 
  ```
-Linting
+11. Linting
 ```bash
 poetry run pre-commit run --all-files
  ```
