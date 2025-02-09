@@ -2,14 +2,20 @@ import asyncio
 
 import pytest
 from app.main import app
-from httpx import AsyncClient
+from httpx import ASGITransport, AsyncClient
 
 TEST_BASE_URL = "http://test"
 
 
 @pytest.fixture
-def client():
-    return AsyncClient(app=app)
+async def client():
+    """
+    Fixture to provide an AsyncClient instance configured for testing.
+    """
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url=TEST_BASE_URL
+    ) as client:
+        yield client
 
 
 @pytest.fixture(scope="session")
