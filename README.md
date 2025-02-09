@@ -1,12 +1,13 @@
 ## Integrations Backend Service
-- A robust backend service implementation featuring two main components: a Data Provider for handling booking/cancellation events and a Dashboard Service for hotel booking analytics. Built with FastAPI, this service follows clean architecture principles with a repository pattern.
+- A robust backend service implementation featuring two main services: a ```Data Provider``` for handling booking/cancellation events and a ```Dashboard Service``` for hotel booking analytics.
+- Built with FastAPI, this service follows clean architecture principles with a repository pattern.
 ### Features:
- #### Data Provider Service
+ ##### Data Provider Service
  - Event management for hotel bookings and cancellations
  - Comprehensive filtering capabilities
  - Data validation and sanitization
  - RESTful API endpoints for event creation and retrieval
- #### Dashboard Service
+ ##### Dashboard Service
  - Real-time booking statistics and insights
  - Flexible time-based aggregation (daily/monthly)
  - Customizable reporting periods
@@ -26,34 +27,33 @@ cd integrations-backend
  ```
 2. Set up PostgreSQL database:
 ```shell
-  ##### Ubuntu
+  # Ubuntu
    sudo apt-get update
    sudo apt-get install postgresql postgresql-contrib
-   ##### macOS
+   # macOS
    brew install postgresql
 
-  ##### Switch to the PostgreSQL user
+  # Switch to the PostgreSQL user
   sudo -i -u postgres
-  ##### linux
+  # linux
   psql
 
-  ###### Open PostgreSQL shell Mac
+  # Open PostgreSQL shell Mac
   brew services start postgres
   psql postgres
 
-  ##### Create a new user
+  # Create a new user
   CREATE USER postgres WITH PASSWORD 'password';
 
-  ##### Create the database
+  # Create the database
   CREATE DATABASE ticket_assignment;
 
-  ##### Grant privileges to the user
+  # Grant privileges to the user
   GRANT ALL PRIVILEGES ON DATABASE ticket_assignment TO postgres;
 
-  ##### Exit the PostgreSQL shell
+  # Exit the PostgreSQL shell
     \q
 ```
-
 3. Create and activate a virtual environment: [install pyenv](https://github.com/pyenv/pyenv#installation)
 
 4. Install Dependencies
@@ -77,10 +77,33 @@ docker-compose up --build
  ```
 
 8. API Documentation
-- Data Provider
+Data Provider:
 ```GET /events``` - Retrieve events with optional filters
+```shell
+
+[
+  {
+    "hotel_id": 3000,
+    "id": 2,
+    "rpg_status": 1,
+    "night_of_stay": "2025-02-09",
+    "timestamp": "2025-02-09T16:59:31.586000+00:00",
+    "room_id": 100
+  }
+]
+```
 ```POST /events``` - Create new event
-- Dashboard
+```shell
+{
+  "hotel_id": 3000,
+  "id": 2,
+  "rpg_status": 1,
+  "night_of_stay": "2025-02-09",
+  "timestamp": "2025-02-09T16:59:31.586000+00:00",
+  "room_id": 100
+}
+```
+Dashboard:
 ```GET /dashboard/{hotel_id}``` - Get booking statistics with customizable periods
 
 9. After running the application, access the API docs at:
@@ -100,3 +123,6 @@ poetry run pre-commit run --all-files
 
 
 
+dockierv issuesv
+
+use local setup  run each service separately

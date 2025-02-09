@@ -1,6 +1,5 @@
-# dashboard/services/dashboard_service.py
 import httpx
-from src.app.repositories.booking import DashboardRepository
+from app.repositories.booking import DashboardRepository
 
 
 class DashboardService:

@@ -1,7 +1,7 @@
+from app.repositories.booking import DashboardRepository
+from app.schemas.booking import DashboardResponse
+from app.services.booking import DashboardService
 from fastapi import APIRouter, Query
-from src.app.repositories.booking import DashboardRepository
-from src.app.schemas.booking import DashboardResponse
-from src.app.services.booking import DashboardService
 
 router = APIRouter()
 
