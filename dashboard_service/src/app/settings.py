@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     ENV_NAME: str = "local"
 
     # PostgreSQL settings for dashboard_service database
-    DB_HOST: str = "localhost"
+    DB_HOST: str = "localhost", "data-provider"
     DB_USER: str = "postgres"
     DB_PASSWORD: str = "password"
     DB_PORT: int = 5432

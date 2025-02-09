@@ -1,9 +1,10 @@
 from logging.config import fileConfig
 
 from alembic import context
-from app.models.booking import BookingStats
 from app.settings import settings
 from sqlalchemy import engine_from_config, pool
+
+from dashboard_service.src.app.models.dashboard import BookingStats
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

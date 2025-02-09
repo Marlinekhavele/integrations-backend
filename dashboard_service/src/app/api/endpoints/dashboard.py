@@ -1,6 +1,6 @@
-from app.repositories.booking import DashboardRepository
-from app.schemas.booking import DashboardResponse
-from app.services.booking import DashboardService
+from app.repositories.dashboard import DashboardRepository
+from app.schemas.dashboard import DashboardResponse
+from app.services.dashboard import DashboardService
 from fastapi import APIRouter, Query
 
 router = APIRouter()
@@ -12,7 +12,7 @@ async def get_dashboard(
     period: str = Query(..., enum=["month", "day", "year"]),
 ):
     """
-    Fetch dashboard analytics for a hotel.
+    Fetch dashboard analytics for bookings in a hotel.
     """
     repo = DashboardRepository()
     service = DashboardService(repo)

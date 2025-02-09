@@ -1,6 +1,7 @@
 FROM python:3.13
 
-WORKDIR /app
+# Create app directory
+WORKDIR /app/
 
 # Install system dependencies and Poetry
 ENV POETRY_HOME="/opt/poetry"
@@ -33,9 +34,13 @@ COPY --chown=appuser:appuser pyproject.toml poetry.lock ./
 # Install dependencies
 RUN poetry install --no-interaction --no-ansi --no-root --only main
 
-# Copy the application code
-COPY --chown=appuser:appuser ./src /app/src
+COPY ./src /app/
 
 ENV PYTHONPATH=/app
 
-CMD ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
+
+# Copy the rest of the application code
+COPY --chown=appuser:appuser . .
+
+CMD ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
+
