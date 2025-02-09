@@ -1,6 +1,5 @@
-import uuid
 from datetime import date
-from typing import List, Optional
+from typing import Optional
 
 from app.repositories.events import EventRepository
 from app.schemas.events import EventCreate

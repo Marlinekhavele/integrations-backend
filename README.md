@@ -68,7 +68,7 @@ poetry run alembic upgrade head
  ```
 6. Run the Application
 ```bash
-poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
  ```
 7. Running with Docker
@@ -136,11 +136,9 @@ poetry run pytest
 poetry run pre-commit run --all-files
  ```
 
+##### Challenges
+- During my final testing phase, I encountered significant issues with Docker opted for podman, which led me to adopt an alternative approach:
+  - I decided to run each service separately using local setups on individual terminals. This method proved more effective for my testing purposes.
 
-
-Docker failed me teribly during testing
-I opted on working on separate terminals when i was doing my final testing
-use local setup  run each service separately
-
-this command helped me with the issues i was have on dashboard service
-export PYTHONPATH=$PYTHONPATH:/Users/marline/Desktop/integrations-backend/dashboard_service/src
+##### Lesson learned
+- Docker is typically a valuable tool for containerization and testing, it's important to have alternative strategies available when unexpected challenges arise. Running services individually can provide more direct control and easier troubleshooting during the development and testing phases.
