@@ -18,13 +18,16 @@ lint:
 	poetry run pre-commit run --all-files
 
 serve:
-	cd src && poetry run uvicorn main:app --reload --port ${SERVER_PORT}
+	cd src && poetry run uvicorn app.main:app --reload --port ${SERVER_PORT}
 
 start:
-	docker-compose up -d hotel_management-db dashboard_service-db
+	podman-compose up -d hotel_management-db dashboard_service-db
+
+start-services:
+	podman-compose up -d hotel_management dashboard_service
 
 stop:
-	docker-compose down
+	podman-compose down
 
 pyclean:
 	find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +
@@ -33,10 +36,10 @@ migrate-local:
 	cd src && poetry run alembic upgrade head
 
 docker-build:
-	docker-compose build
+	podman-compose build
 
 docker-up:
-	docker-compose up -d
+	podman-compose up -d
 
 docker-down:
-	docker-compose down
+	podman-compose down

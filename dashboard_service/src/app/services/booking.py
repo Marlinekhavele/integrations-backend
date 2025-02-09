@@ -1,11 +1,11 @@
 # dashboard/services/dashboard_service.py
 import httpx
-from app.repositories.booking import DashboardRepository
+from src.app.repositories.booking import DashboardRepository
 
 
 class DashboardService:
     def __init__(
-        self, repo: DashboardRepository, api_url="http://127.0.0.1:8000/api/events/"
+        self, repo: DashboardRepository, api_url="http://data-provider:8000/api/events/"
     ):
         self.repo = repo
         self.api_url = api_url

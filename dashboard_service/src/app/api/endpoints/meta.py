@@ -1,8 +1,8 @@
 import logging
 
-from app.schemas.meta import Meta
 from fastapi import APIRouter
 from fastapi.requests import Request
+from src.app.schemas.meta import Meta
 
 logger = logging.getLogger(__name__)
 

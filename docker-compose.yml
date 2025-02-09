@@ -1,17 +1,17 @@
 version: '3.8'
 
 services:
-  data-provider-db:
+  hotel_management-db:
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: hotel_mangement
+      POSTGRES_DB: hotel_management
     ports:
       - "5433:5432"
 
-  dashboard-db:
+  dashboard_service-db:
     image: postgres
     restart: always
     environment:
@@ -21,18 +21,22 @@ services:
     ports:
       - "5434:5432"
 
-  data-provider:
-    build: ./data_provider
-    command: ["poetry", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+  hotel_management:
+    build:
+      context: ./data_provider
+      dockerfile: Dockerfile
+    command: ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
     ports:
       - "8000:8000"
     depends_on:
-      - data-provider-db
+      - hotel_management-db
 
-  dashboard:
-    build: ./dashboard
-    command: ["poetry", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8001"]
+  dashboard_service:
+    build:
+      context: ./dashboard_service
+      dockerfile: Dockerfile
+    command: ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
     ports:
       - "8001:8001"
     depends_on:
-      - dashboard-db
+      - dashboard_service-db
