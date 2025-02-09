@@ -105,7 +105,22 @@ Data Provider:
 ```
 Dashboard:
 ```GET /dashboard/{hotel_id}``` - Get booking statistics with customizable periods
-
+```shell
+{
+  "hotel_id": 3000,
+  "period": "day",
+  "csv_data": {},
+  "event_data": [
+    {
+      "hotel_id": 3000,
+      "id": 2,
+      "rpg_status": 1,
+      "night_of_stay": "2025-02-09",
+      "room_id": 100
+    }
+  ]
+}
+```
 9. After running the application, access the API docs at:
 ```bash
 OpenAPI: http://localhost:8000/docs
@@ -123,6 +138,9 @@ poetry run pre-commit run --all-files
 
 
 
-dockierv issuesv
-
+Docker failed me teribly during testing
+I opted on working on separate terminals when i was doing my final testing
 use local setup  run each service separately
+
+this command helped me with the issues i was have on dashboard service
+export PYTHONPATH=$PYTHONPATH:/Users/marline/Desktop/integrations-backend/dashboard_service/src
