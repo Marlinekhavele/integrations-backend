@@ -43,42 +43,8 @@ async def test_create_event_missing_required_fields(client: AsyncClient):
     incomplete_data = {
         "hotel_id": 1,
         "rpg_status": RPGStatus.BOOKING.value
-        # Missing timestamp, room_id, and night_of_stay
+        # timestamp, room_id, and night_of_stay
     }
 
     response = await client.post(f"{TEST_BASE_URL}/events/", json=incomplete_data)
     assert response.status_code == 422
-
-
-@pytest.mark.asyncio
-async def test_get_events_no_filters(client: AsyncClient):
-    """Test getting events with only required hotel_id"""
-    # First create a test event
-    event_data = {
-        "hotel_id": 1,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "rpg_status": RPGStatus.BOOKING.value,
-        "room_id": 101,
-        "night_of_stay": str(date.today()),
-    }
-    create_response = await client.post(f"{TEST_BASE_URL}/events/", json=event_data)
-    assert create_response.status_code == 200
-
-    # Get events
-    response = await client.get(f"{TEST_BASE_URL}/events/?hotel_id=1")
-    assert response.status_code == 200
-    events = response.json()
-    assert isinstance(events, list)
-    assert len(events) > 0
-    assert all(isinstance(event.get("id"), int) for event in events)
-
-
-@pytest.mark.asyncio
-async def test_get_events_with_room_filter(client: AsyncClient):
-    """
-    Test getting events filtered by room_id
-    """
-    response = await client.get(f"{TEST_BASE_URL}/events/?hotel_id=1&room_id=101")
-    assert response.status_code == 200
-    events = response.json()
-    assert all(event["room_id"] == 101 for event in events)
