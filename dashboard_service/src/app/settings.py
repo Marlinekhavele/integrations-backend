@@ -1,5 +1,3 @@
-import os
-
 from pydantic.networks import PostgresDsn
 from pydantic_settings import BaseSettings
 
@@ -13,7 +11,6 @@ class Settings(BaseSettings):
     DB_PASSWORD: str = "password"
     DB_PORT: int = 5432
     DB_NAME: str = "dashboard_service"
-    CSV_FILE_PATH: str = os.getenv("CSV_FILE_PATH", "data.csv")
 
     @property
     def DB_URL(self) -> str:

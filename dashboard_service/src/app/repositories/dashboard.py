@@ -21,7 +21,7 @@ class DashboardRepository:
         except Exception as e:
             raise Exception(f"Error loading CSV file: {str(e)}")
 
-        # Ensure required columns exist
+        # Ensure columns exist
         required_columns = [
             "hotel_id",
             "event_timestamp",
@@ -42,7 +42,7 @@ class DashboardRepository:
         # Filter by hotel_id
         df = df[df["hotel_id"] == hotel_id]
 
-        # Remove duplicate reservations (only count unique room_reservation_id)
+        # Remove duplicate reservations
         df = df.drop_duplicates(subset=["room_reservation_id"])
 
         # unique bookings by month, day, or year
