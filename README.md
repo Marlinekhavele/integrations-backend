@@ -45,11 +45,11 @@ cd integrations-backend
   # Create a new user
   CREATE USER postgres WITH PASSWORD 'password';
 
-  # Create the database
-  CREATE DATABASE ticket_assignment;
+  # Create the database this is for data-provider
+  CREATE DATABASE hotel_management;
 
   # Grant privileges to the user
-  GRANT ALL PRIVILEGES ON DATABASE ticket_assignment TO postgres;
+  GRANT ALL PRIVILEGES ON DATABASE hotel_management TO postgres;
 
   # Exit the PostgreSQL shell
     \q
