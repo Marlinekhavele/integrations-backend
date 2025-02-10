@@ -56,6 +56,12 @@ cd integrations-backend
 ```
 3. Create and activate a virtual environment: [install pyenv](https://github.com/pyenv/pyenv#installation)
 
+#### Alternatively, using Python's built-in venv:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
+
 4. Install Dependencies
 ```bash
 poetry install
