@@ -121,17 +121,22 @@ Dashboard:
   ]
 }
 ```
-9. After running the application, access the API docs at:
+9. After running the application, access the API docs at for data-provider:
 ```bash
 OpenAPI: http://localhost:8000/docs
 
  ```
-10. Testing
+10. Access dashboard_service at:
+```bash
+OpenAPI: http://localhost:8001/docs
+
+ ```
+11. Testing
 ```bash
 poetry run pytest
 
  ```
-11. Linting
+12. Linting
 ```bash
 poetry run pre-commit run --all-files
  ```
